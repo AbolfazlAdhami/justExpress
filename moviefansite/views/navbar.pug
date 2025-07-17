@@ -1,0 +1,18 @@
+nav.navbar.bg-dark.py-3
+  .container-fluid
+    .navbar-header
+      a.navbar-brand.text-warning.fs-3.fw-bold(href="/") The New IMDB
+    ul.nav
+      li.nav-item
+        a.nav-link.fs-5.link-light.link-opacity-100.link.link-underline.link-underline-opacity-0(href="/login") Login
+      li.nav-item
+        a.nav-link.fs-5.link-light.link-opacity-100.link.link-underline.link-underline-opacity-0(href="/favorites") Favorites
+    ul.nav
+      li.nav-item
+        form#search-form.form.d-flex.flex-row.align-items-center.gap-2(action="/search?source=hp" method="post")
+          .form-group
+            select#floatingSelectGrid.form-select(name="cat")
+              option(value="movie") Movie Title
+              option(value="person") Actor
+          input#movie.form-control(type="text" placeholder="Search" name="movieSearch")
+          input.btn.btn-primary(type="submit")

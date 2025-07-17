@@ -1,0 +1,31 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Movie App
+    include head
+
+  body
+    include navbar
+    .container
+      .row
+        .col-sm-12.mx-12
+          h1.text-primary.my-2 Movie List
+
+        .col-sm-12.row
+          each movie in data
+            .col-md-3.col-sm-4.poster
+              a(href=`/movie/${movie.id}`) 
+                img(src=movie.poster alt=`${movie.title} Poster`)
+
+        .col-sm-12.d-flex.align-items.center.justify-content-center.mt-8
+          nav(aria-label="Page navigation example")
+            ul.pagination
+              li.page-item(class=metadata.current_page === 1 ? "disabled" : "")
+                a.page-link(href=`?page=${parseInt(metadata.current_page)-1}`) Previous
+              each num in [0,1,2,3,4,5,6,7,8,9,].map(i => i + 1)
+                li.page-item(class=parseInt(metadata.current_page) === num ? "active" : "")
+                  a.page-link(href=`?page=${num}`) #{num}
+              li.page-item(class=metadata.current_page === totalPages ? "disabled" : "")
+                a.page-link(href=`?page=${parseInt(metadata.current_page)+1 }`) Next

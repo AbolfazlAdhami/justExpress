@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    include head
+  body
+    include navbar
+    .container-fluid
+      .row.align-items-center.my-5.justify-content-center
+        .col-sm-12.col-sm-offset-2.text-center
+          h1.single-movie-title=title
+          h3.single-movie-title
+          img(src=poster)
+          p.overview-header Movie Synopsis: 
+            span.single-movie-overview=plot
+		    span=director
+
+    // Button trigger modal
+    .col-sm-12.text-center
+      button.btn.btn-primary.btn-lg More Details
+
+ 

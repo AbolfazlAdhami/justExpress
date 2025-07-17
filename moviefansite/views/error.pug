@@ -1,0 +1,12 @@
+doctype html
+html(lang="en")
+  head
+    title Movie App
+    include head
+
+  body.bg-dark.flex.align-items-center
+    include head
+
+    h1.text-danger= message
+    h2.text-danger= error.status
+    pre= error.stack
