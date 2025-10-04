@@ -1,0 +1,30 @@
+extends ../layout.pug
+
+block content
+  if task && task.id
+    h2 Edit Task
+    actionUrl = `/tasks/${task.id}/edit`
+  else
+    h2 New Task
+    actionUrl = '/tasks'
+  form(method='post', action=actionUrl)
+    label(for='title') Title
+    input(type='text', name='title', id='title', value=task.title || '')
+    br
+    label(for='description') Description
+    textarea(name='description')= task.description || ''
+    br
+    label(for='status') Status
+    select(name='status')
+      option(value='todo' selected=(task.status==='todo')) To Do
+      option(value='in_progress' selected=(task.status==='in_progress')) In Progress
+      option(value='done' selected=(task.status==='done')) Done
+    br
+    label(for='user_id') Assign to
+    select(name='user_id')
+      option(value='') --
+      //- you should provide users list from controller, otherwise omit
+      each u in (locals.users || [])
+        option(value=u.id selected=(task.user_id===u.id))= u.username
+    br
+    button(type='submit') Submit

@@ -1,0 +1,27 @@
+extends ../layout.pug
+
+block content
+  if user && user.id
+    h2 Edit User
+    actionUrl = `/users/${user.id}/edit`
+  else
+    h2 New User
+    actionUrl = '/users'
+  if error
+    p.error= error
+  form(method='post', action=actionUrl)
+    label(for='username') Username
+    input(type='text', name='username', id='username', value=user.username || '')
+    br
+    label(for='age') Age
+    input(type='number', name='age', id='age', value=user.age || '')
+    br
+    label(for='type') Type
+    select(name='type')
+      option(value='user' selected=(user.type==='user')) user
+      option(value='admin' selected=(user.type==='admin')) admin
+    br
+    label(for='job') Job
+    input(type='text', name='job', id='job', value=user.job || '')
+    br
+    button(type='submit') Submit

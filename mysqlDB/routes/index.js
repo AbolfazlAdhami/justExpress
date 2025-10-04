@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+import usersRouter from "./routes/users.js";
+import tasksRouter from "./routes/tasks.js";
 
-module.exports = router;
+app.use("/users", usersRouter);
+app.use("/tasks", tasksRouter);

@@ -1,0 +1,24 @@
+extends ../layout.pug
+
+block content
+  h2 Tasks
+  a(href='/tasks/new') New task
+  table
+    thead
+      tr
+        th ID
+        th Title
+        th Status
+        th Owner
+        th Actions
+    tbody
+      each t in tasks
+        tr
+          td= t.id
+          td: a(href=`/tasks/${t.id}`)= t.title
+          td= t.status
+          td= t.owner || '—'
+          td
+            a(href=`/tasks/${t.id}/edit`) Edit
+            form(method='post', action=`/tasks/${t.id}/delete`, style='display:inline')
+              button(type='submit') Delete

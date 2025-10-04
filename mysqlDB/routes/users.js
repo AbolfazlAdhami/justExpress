@@ -1,9 +1,13 @@
-var express = require('express');
-var router = express.Router();
+import express from "express";
+import * as usersCtrl from "../controllers/usersController.js";
+const router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.get("/", usersCtrl.listUsers); // list page
+router.get("/new", usersCtrl.newUserForm); // form to create
+router.post("/", usersCtrl.createUser); // submit create
+router.get("/:id", usersCtrl.showUser); // detail
+router.get("/:id/edit", usersCtrl.editUserForm);
+router.post("/:id/edit", usersCtrl.updateUser);
+router.post("/:id/delete", usersCtrl.deleteUser);
 
-module.exports = router;
+export default router;

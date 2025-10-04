@@ -1,0 +1,28 @@
+extends ../layout.pug
+
+block content
+  h2 Users
+  a(href='/users/new') New user
+  if error
+    p.error= error
+  table
+    thead
+      tr
+        th ID
+        th Username
+        th Age
+        th Type
+        th Job
+        th Actions
+    tbody
+      each u in users
+        tr
+          td= u.id
+          td: a(href=`/users/${u.id}`)= u.username
+          td= u.age
+          td= u.type
+          td= u.job
+          td
+            a(href=`/users/${u.id}/edit`) Edit
+            form(method='post', action=`/users/${u.id}/delete`, style='display:inline')
+              button(type='submit') Delete

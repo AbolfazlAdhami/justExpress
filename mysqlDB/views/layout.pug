@@ -4,4 +4,13 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    header
+      h1 Task Manager
+      nav
+        a(href='/') Home |
+        a(href='/users') Users |
+        a(href='/tasks') Tasks
+    main
+      block content
+    footer
+      p © #{new Date().getFullYear()}
