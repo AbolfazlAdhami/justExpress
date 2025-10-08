@@ -1,11 +1,16 @@
-import express from "express";
-const PORT = process.env.PORT || 3001;
+import { createApp } from "./createApp.mjs";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
 
-const app = express();
+dotenv.config();
+const PORT = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {});
+const app = createApp();
 
-
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("Connected to Database"))
+  .catch((err) => console.log(`Error: ${err}`));
 
 app.listen(PORT, () => {
   console.log(`Running on Port ${PORT}`);
