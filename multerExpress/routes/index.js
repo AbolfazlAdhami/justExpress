@@ -58,8 +58,9 @@ router.post("/formsub", upload.single("meme"), async (req, res, next) => {
 
 // MULTIPLE (array) upload — limit to 8 files for example
 router.post("/formsubarray", upload.array("meme", 8), async (req, res) => {
+  console.log(req.files);
   try {
-    if (!req.file || req.files.length == 0) return res.status(400).json({ error: "No files uploaded" });
+    if (!req.files || req.files.length == 0) return res.status(400).json({ error: "No files uploaded" });
 
     const saved = [];
     for (const f of req.files) {

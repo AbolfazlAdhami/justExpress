@@ -2,14 +2,14 @@
 <html>
   <body>
     <h2>Single File Upload</h2>
-    <form action="/upload/single" method="post" enctype="multipart/form-data">
-      <input type="file" name="myFile" />
+    <form action="/formsub" method="post" enctype="multipart/form-data">
+      <input type="file" name="meme" />
       <button type="submit">Upload Single</button>
     </form>
 
     <h2>Multiple Files Upload</h2>
-    <form action="/upload/multiple" method="post" enctype="multipart/form-data">
-      <input type="file" name="myFiles" multiple />
+    <form action="/formsubarray" method="post" enctype="multipart/form-data">
+      <input type="file" name="meme" multiple />
       <button type="submit">Upload Multiple</button>
     </form>
   </body>
