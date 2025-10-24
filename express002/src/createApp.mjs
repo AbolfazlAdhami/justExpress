@@ -27,7 +27,7 @@ export function createApp() {
 
   app.use(passport.initialize());
   app.use(passport.session());
-  app.use(passport.)
+  passportConfig(passport);
   app.use(routes);
   return app;
 }
