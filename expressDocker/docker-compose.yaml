@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  api:
+    build: ./api
+    container_name: api_c
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./api:/app
+      - ./app/node_modules
+  view:
+    build: ./view
+    container_name: view_c
+    ports:
+      - '5173:5173'
+    stdin_open: true
