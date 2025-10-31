@@ -12,7 +12,10 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "express": "^5.1.0"
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.19.2",
+    "mongoose-timestamp": "^0.6.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
