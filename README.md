@@ -11,10 +11,11 @@
 
 ```
 justExpress/
+├── express-s3-upload/ # استفاده از باکت S3 و AWS برای اپلود فایل
 ├── express001/        # راه‌اندازی اولیه سرور
 ├── express002/        # مسیرها و پاسخ JSON
 ├── moviefanapi/       # API برای داده‌های فیلم
-├── moviefansite/      # سایت ساده با Express و HTML
+├── moviefansite/      # سایت ساده با Express و temple engine PUG
 ├── multerExpress/     # آپلود فایل با Multer
 ├── mysqlDB/           # اتصال و CRUD با MySQL
 └── README.md
@@ -42,7 +43,7 @@ npm start
 # یا
 node run dev 
 ```
-
+<!-- 
 
 ---
 
@@ -59,6 +60,7 @@ node run dev
 | ✅ | **mysqlDB** | اتصال به MySQL و پیاده‌سازی CRUD |
 
 ---
+ -->
 
 ### ⚡ چالش‌های پیشنهادی (برای ادامه مسیر یادگیری)
 | وضعیت | عنوان | توضیح کوتاه |
