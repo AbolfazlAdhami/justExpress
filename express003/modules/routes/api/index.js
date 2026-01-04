@@ -2,8 +2,8 @@ const { Router } = require("express");
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.json("Wellcome to Api");
-});
+const api = require("./api");
+
+router.use("/v1", api);
 
 module.exports = router;
