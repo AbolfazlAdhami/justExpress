@@ -3,11 +3,11 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.json("Wellcome to Home Page");
+  res.json("Welcome to Home Page");
 });
 
 router.get("/about", (req, res) => {
-  return res.json("Wellcome to About Page");
+  return res.json("Welcome to About Page");
 });
 
 module.exports = router;
