@@ -10,6 +10,6 @@ module.exports = {
     },
     model: path.resolve("./models"),
     controller: path.resolve("./controllers"),
-    transforms: path.resolve("./transfomrs"),
+    transforms: path.resolve("./transforms"),
   },
 };
