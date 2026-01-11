@@ -4,10 +4,10 @@ const bcrypt = require("bcryptjs");
 
 module.exports = new (class AuthController extends Controller {
   register(req, res) {
-    req.checkBy("name", "Name is required for Register").notEmpty();
-    req.checkBy("email", "Email is required for Register").notEmpty();
-    req.checkBy("email", "Email Format is invalid").isEmail();
-    req.checkBy("password", "Password is required for Register").notEmpty();
+    req.checkBody("name", "Name is required for Register").notEmpty();
+    req.checkBody("email", "Email is required for Register").notEmpty();
+    req.checkBody("email", "Email Format is invalid").isEmail();
+    req.checkBody("password", "Password is required for Register").notEmpty();
 
     if (this.showValidationErrors(req, res)) return;
 
@@ -31,9 +31,9 @@ module.exports = new (class AuthController extends Controller {
       });
   }
   login(req, res) {
-    req.checkBy("email", "Email is required for Login").notEmpty();
-    req.checkBy("email", "Email Format is invalid").isEmail();
-    req.checkBy("password", "Password is required for Login").notEmpty();
+    req.checkBody("email", "Email is required for Login").notEmpty();
+    req.checkBody("email", "Email Format is invalid").isEmail();
+    req.checkBody("password", "Password is required for Login").notEmpty();
 
     if (this.showValidationErrors(req, res)) return;
 
