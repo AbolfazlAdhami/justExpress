@@ -12,7 +12,7 @@ module.exports = new (class CourseController extends Controller {
           success: true,
         });
 
-      res.json({ message: "Courses empty ", success: false });
+      res.json({ message: "Courses empty!", success: false });
     });
   }
 })();
