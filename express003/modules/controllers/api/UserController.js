@@ -1,4 +1,3 @@
-const config = require("../../config");
 const Controller = require(`${config.path.controllers}/Controller`);
 const UserTransform = require(`${config.path.transforms}/v1/UserTransform`);
 
