@@ -24,3 +24,9 @@ router.post("/register", AuthController);
 router.get("/user", apiAuth, UserController.index.bind(UserController));
 
 router.post("/user/image", apiAuth, uploadImage.single("image"), UserController.uploadImage.bind(UserController));
+
+const adminRouter = express.Router();
+
+router.use("/admin", adminRouter);
+
+module.exports = router;
