@@ -24,12 +24,35 @@ module.exports = new (class CourseController extends Controller {
 
     const { title, body, price, image } = req.body;
 
-    new this.model.User({ title, body, price, image }).save((err) => {
-      if (err) throw err;
+    const newCourse = new this.model.User({ title, body, price, image });
 
+    newCourse.save((err) => {
+      if (err) throw err;
+      req.user.courses.push(newCourse._id)
+      req.user.save()
       return res.json({ message: "create courses successfully", success: true });
     });
   }
-  update(req, res) {}
-  destroy(req, res) {}
+
+  update(req, res) {
+    req.checkParams("id", "id is invalid").isMongoId();
+
+    if (this.showValidationErrors(req, res)) return;
+
+    const { title } = req.body;
+
+    this.model.Course.findByIdAndUpdate(req.params.id, { title }, (err) => {
+      if (err) throw err;
+    });
+  }
+  destroy(req, res) {
+    req.checkParams("id", "id is invalid").isMongoId();
+
+    if (this.showValidationErrors(req, res)) return;
+
+    this.model.Course.findByIdAndRemove(req.params.id, (err) => {
+      if (err) throw err;
+      res.json({ message: "Course Deleted Successfully", success: true });
+    });
+  }
 })();
