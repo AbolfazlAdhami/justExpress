@@ -1,3 +1,4 @@
+// Models
 const Course = require(`${config.path.modal}/course`);
 const Episode = require(`${config.path.modal}/episode`);
 const User = require(`${config.path.modal}/User`);

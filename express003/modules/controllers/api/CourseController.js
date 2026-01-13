@@ -1,5 +1,5 @@
 const Controller = require(`../Controller`);
-const CourseTransform = require(`../../transforms/v1/CourseTransform`);
+const CourseTransform = require(`${config.path.controller}/v1/CourseTransform`);
 
 module.exports = new (class CourseController extends Controller {
   index(req, res) {
