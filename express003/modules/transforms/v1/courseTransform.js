@@ -6,6 +6,12 @@ module.exports = class CourseTransform extends Transform {
       title: item.title,
       body: item.body,
       price: item.price,
+      ...this.showEpisodes(item),
     };
   }
+  showEpisodes(item) {
+    const EpisodeTransform = require("./EpisodeTransform");
+  }
+
+  withEpisodes() {}
 };
