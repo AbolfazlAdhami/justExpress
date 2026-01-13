@@ -6,7 +6,7 @@ const expressValidator = require("express-validator");
 global.config = require("./modules/config");
 
 //  Connect to DB
-mongoose.connect("mongodb://127.0.0.1:270170/education");
+mongoose.connect("mongodb://127.0.0.1:270170/education", {});
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -24,6 +24,4 @@ app.listen(config.port, () => {
   console.log(`Server running on Port ${config.port}`);
 });
 
-
-
-// TODO: install mkdirp electron-window-state  
+// TODO: install mkdirp electron-window-state

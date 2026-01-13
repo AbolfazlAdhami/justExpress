@@ -10,7 +10,9 @@ module.exports = new (class CourseController extends Controller {
       if (courses) return res.json(courses);
     });
   }
+
   single(req, res) {}
+
   store(req, res) {
     // Validation
     req.checkBody("title", "title could not empty").notEmpty();
@@ -28,8 +30,8 @@ module.exports = new (class CourseController extends Controller {
 
     newCourse.save((err) => {
       if (err) throw err;
-      req.user.courses.push(newCourse._id)
-      req.user.save()
+      req.user.courses.push(newCourse._id);
+      req.user.save();
       return res.json({ message: "create courses successfully", success: true });
     });
   }
@@ -45,6 +47,7 @@ module.exports = new (class CourseController extends Controller {
       if (err) throw err;
     });
   }
+
   destroy(req, res) {
     req.checkParams("id", "id is invalid").isMongoId();
 
