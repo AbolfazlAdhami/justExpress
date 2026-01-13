@@ -8,11 +8,10 @@ const UserSchema = new Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   course: [{ type: Schema.Types.ObjectId, ref: "Course" }],
+  type: { type: String, default: "user" },
 });
 
 UserSchema.plugin(timestamps);
-
-module.exports = mongoose.model("User", UserSchema);
 
 UserSchema.pre("save", (next) => {
   bcrypt.hash(this.password, 10, (err, hash) => {
@@ -20,3 +19,5 @@ UserSchema.pre("save", (next) => {
     next();
   });
 });
+
+module.exports = mongoose.model("User", UserSchema);
