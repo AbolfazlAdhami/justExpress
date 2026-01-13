@@ -11,7 +11,14 @@ module.exports = class CourseTransform extends Transform {
   }
   showEpisodes(item) {
     const EpisodeTransform = require("./EpisodeTransform");
+
+    if (this.withEpisodesStatus) return { episodes: new EpisodeTransform().transformCollection(item.episodes) };
+
+    return {};
   }
 
-  withEpisodes() {}
+  withEpisodes() {
+    this.withEpisodesStatus = true;
+    return this;
+  }
 };
