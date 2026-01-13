@@ -2,7 +2,7 @@ const config = require("../../config");
 
 const Controller = require(`../Controller`);
 const EpisodeTransform = require(`${config.path.controller}/EpisodeTransform`);
-const CourseTransform = require(`${config.path.controller}/CourseTransform`);
+
 
 module.exports = new (class EpisodeController extends Controller {
   single(req, res) {
