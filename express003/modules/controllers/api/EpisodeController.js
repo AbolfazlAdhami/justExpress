@@ -8,7 +8,7 @@ module.exports = new (class EpisodeController extends Controller {
 
     if (this.showValidationErrors(req, res)) return;
 
-    this.model.Episode.findById(req, params.id)
+    this.model.Episode.findById(req.params.id)
       .populate("course")
       .exec((err, episode) => {
         if (err) throw err;

@@ -1,5 +1,3 @@
-// const Controller = require(`${config.path.controllers}/Controller`);
-
 const Controller = require("../../Controller");
 
 module.exports = new (class CourseController extends Controller {
@@ -11,7 +9,19 @@ module.exports = new (class CourseController extends Controller {
     });
   }
 
-  single(req, res) {}
+  single(req, res) {
+    req.checkParams("id", "id is invalid ").isMongoId();
+
+    if (this.showValidationErrors(req, res)) return;
+
+    this.model.Course.findById(req.params.id).exec((err, course) => {
+      if (err) throw err;
+
+      if (course) return res.json({ data: course, success: true });
+
+      return res.json({ message: "episode empty", success: false });
+    });
+  }
 
   store(req, res) {
     // Validation
@@ -32,7 +42,7 @@ module.exports = new (class CourseController extends Controller {
       if (err) throw err;
       req.user.courses.push(newCourse._id);
       req.user.save();
-      return res.json({ message: "create courses successfully", success: true });
+      return res.status(201).json({ message: "create courses successfully", success: true });
     });
   }
 
@@ -45,6 +55,8 @@ module.exports = new (class CourseController extends Controller {
 
     this.model.Course.findByIdAndUpdate(req.params.id, { title }, (err) => {
       if (err) throw err;
+
+      return res.json({ message: "Course updated Successfully ", success: true });
     });
   }
 
@@ -55,7 +67,7 @@ module.exports = new (class CourseController extends Controller {
 
     this.model.Course.findByIdAndRemove(req.params.id, (err) => {
       if (err) throw err;
-      res.json({ message: "Course Deleted Successfully", success: true });
+      res.json({ message: "Course was Deleted Successfully", success: true });
     });
   }
 })();
