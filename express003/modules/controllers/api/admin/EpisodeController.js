@@ -1,4 +1,3 @@
-// const Controller = require(`${config.path.controllers}/Controller`);
 
 const Controller = require("../../Controller");
 const EpisodeTransform = require("../../../transforms/v1/EpisodeTransform");
