@@ -10,7 +10,7 @@ module.export = new (class EpisodeController extends Controller {
       .then((result) => {
         if (result) return res.json({ Date: new EpisodeTransform().withPaginate().transformCollection(result), success: true });
 
-        return res.json({
+        return res.status(404).json({
           message: "episode not found try later",
           success: false,
         });
@@ -28,7 +28,7 @@ module.export = new (class EpisodeController extends Controller {
 
       if (episode) return res.json({ data: episode, success: true });
 
-      return res.json({ message: "not Found!", success: false });
+      return res.status(404).json({ message: "not Found!", success: false });
     });
   }
 
@@ -43,6 +43,8 @@ module.export = new (class EpisodeController extends Controller {
 
     if (this.showValidationErrors(req, res)) return;
 
+
+    const { course_id } = req.body;
     let course = this.model.Course.findById();
   }
   update(req, res) {
@@ -80,9 +82,9 @@ module.export = new (class EpisodeController extends Controller {
 
             return res.json({ message: "Episode was deleted successfully", success: true });
           });
-          return res.json({ message: "Something wrong try later", success: false });
+          return res.status(400).json({ message: "Something wrong try later", success: false });
         }
-        return res.json({ message: "Not found episode by this id ", success: false });
+        return res.status(404).json({ message: "Not found episode by this id ", success: false });
       });
   }
 })();
