@@ -43,9 +43,27 @@ module.export = new (class EpisodeController extends Controller {
 
     if (this.showValidationErrors(req, res)) return;
 
+    const { course_id, title, body, videoUrl, number } = req.body;
+    this.model.Course.findById(course_id, (err, course) => {
+      if (err) throw err;
+      let episode = new this.model.Episode({
+        course: course_id,
+        title,
+        body,
+        videoUrl,
+        number,
+      });
+      episode.save((err) => {
+        if (err) throw err;
 
-    const { course_id } = req.body;
-    let course = this.model.Course.findById();
+        course.episodes.push(episode._id);
+        course.save();
+
+        return res.json({ message: "Episode created and  added to related Course Successfully", success: true });
+      });
+
+      return res.status(400).json({ message: "Course not found", success: false });
+    });
   }
   update(req, res) {
     req.checkParams("id", "id is invalid").isMongoId();
@@ -56,7 +74,7 @@ module.export = new (class EpisodeController extends Controller {
     this.model.Episode.findByIdAndUpdate(req.params.id, { title }, (err, episode) => {
       if (err) throw err;
 
-      if (episode) return req.json({ message: "episode updated successfully", success: true });
+      if (episode) return req.json({ message: "Episode updated successfully", success: true });
 
       return res.status(400).json({ message: "Something is wrong check later", success: false });
     });
