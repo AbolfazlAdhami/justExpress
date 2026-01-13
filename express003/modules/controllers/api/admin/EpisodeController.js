@@ -1,14 +1,21 @@
 // const Controller = require(`${config.path.controllers}/Controller`);
 
 const Controller = require("../../Controller");
-
+const EpisodeTransform = require("../../../transforms/v1/EpisodeTransform");
 module.export = new (class EpisodeController extends Controller {
   index(req, res) {
-    this.model.Episode.find({}, (err, episodes) => {
-      if (err) throw err;
+    const page = req.query.page || 1;
 
-      if (episodes) return res.json({ data: episodes, success: true });
-    });
+    this.model.Episode.paginate({}, { page, limit: 2 })
+      .then((result) => {
+        if (result) return res.json({ Date: new EpisodeTransform().withPaginate().transformCollection(result), success: true });
+
+        return res.json({
+          message: "episode not found try later",
+          success: false,
+        });
+      })
+      .catch((err) => console.log(err));
   }
 
   single(req, res) {
@@ -36,14 +43,22 @@ module.export = new (class EpisodeController extends Controller {
 
     if (this.showValidationErrors(req, res)) return;
 
-con
-
-      let course=this.model.Course.findById()
-
-
-
+    let course = this.model.Course.findById();
   }
-  update(req, res) {}
+  update(req, res) {
+    req.checkParams("id", "id is invalid").isMongoId();
+
+    if (this.showValidationErrors(req, res)) return;
+
+    const { title } = req.body;
+    this.model.Episode.findByIdAndUpdate(req.params.id, { title }, (err, episode) => {
+      if (err) throw err;
+
+      if (episode) return req.json({ message: "episode updated successfully", success: true });
+
+      return res.status(400).json({ message: "Something is wrong check later", success: false });
+    });
+  }
   destroy(req, res) {
     req.checkParams("id", "id is invalid").isMongoId();
 
