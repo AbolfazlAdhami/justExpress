@@ -5,8 +5,11 @@ import { seedAdmin } from "./seed/seedData.mjs";
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
+
 const app = createApp();
+
 connectDB().then(() => seedAdmin());
+
 app.listen(PORT, () => {
   console.log(`Running on Port ${PORT}`);
 });

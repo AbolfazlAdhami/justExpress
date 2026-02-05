@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-import { User } from "../models/user.mjs";
+import { User } from "../models/User.mjs";
 
 export const seedAdmin = async () => {
   const existingAdmin = await User.findOne({ email: "abolfazl@example.com" });
