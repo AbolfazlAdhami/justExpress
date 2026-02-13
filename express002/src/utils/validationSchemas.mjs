@@ -1,7 +1,12 @@
 import Joi from "joi";
 
 export const createUserValidationSchema = Joi.object({
-  name: Joi.string().trim().min(2).max(20).required().messages({
+  username: Joi.string().trim().min(2).max(20).required().messages({
+    "string.empty": "Name is required",
+    "string.min": "Name must be at least 2 characters",
+    "string.max": "Name cannot exceed 50 characters",
+  }),
+  displayname: Joi.string().trim().min(2).max(20).required().messages({
     "string.empty": "Name is required",
     "string.min": "Name must be at least 2 characters",
     "string.max": "Name cannot exceed 50 characters",

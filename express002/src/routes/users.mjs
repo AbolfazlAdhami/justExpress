@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { query, validationResult, checkSchema, matchedData } from "express-validator";
 import { users } from "../data/users.mjs";
-import { createUserValidationSchema } from "../utils/validationSchemas";
+import * as createUserValidationSchema from "../utils/validationSchemas.mjs";
 import { resolveIndexByUserId } from "../middlewares/index.mjs";
 import { User } from "../models/User";
 import { hashPassword } from "../utils/helpers.mjs";
