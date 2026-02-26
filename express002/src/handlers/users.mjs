@@ -1,7 +1,7 @@
 import { matchedData, validationResult } from "express-validator";
 import { users as mockUsers } from "../data/users.mjs";
 import { hashPassword } from "../utils/helpers.mjs";
-import { User } from "../models/User";
+import User from "../models/User.mjs";
 
 export const getUserByIdHandler = (request, response) => {
   const { findUserIndex } = request;

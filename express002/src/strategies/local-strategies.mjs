@@ -2,8 +2,6 @@ import passport from "passport";
 import User from "../models/User.mjs";
 import { Strategy } from "passport-local";
 import { comparePassword } from "../utils/helpers.mjs";
-// import { users } from "../data/users.mjs";
-
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
